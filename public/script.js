@@ -1,5 +1,6 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
+const user = prompt("Enter your name");
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
@@ -132,3 +133,10 @@ const setPlayVideo = () => {
   `
   document.querySelector('.main__video_button').innerHTML = html;
 }
+const inviteButton= document.querySelector("#invitebtn");
+inviteButton.addEventListener("click", function (e) {
+  prompt(
+    "Copy this link and send it to people you want to meet with",
+    window.location.href
+  );
+});
