@@ -1,6 +1,13 @@
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
-const user = prompt("Enter your name");
+
+const showChat = document.querySelector("#showChat");
+showChat.addEventListener("click", function () {
+  document.querySelector(".main__right").classList.toggle("right");
+  document.querySelector(".main__left").classList.toggle("fullDisplay");
+  showChat.classList.toggle("color");
+});
+// const user = prompt("Enter your name");
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
@@ -13,9 +20,9 @@ const peers = {}
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
-}).then(AudioVideo => {
-  myVideoStream = AudioVideo;
-  addVideoStream(myVideo, AudioVideo)
+}).then(stream => {
+  myVideoStream = stream;
+  addVideoStream(myVideo, stream)
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
@@ -25,7 +32,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    connectToNewUser(userId, AudioVideo)
+    connectToNewUser(userId, stream)
   })
   // input value
   let text = $("input");
@@ -36,7 +43,7 @@ navigator.mediaDevices.getUserMedia({
       text.val('')
     }
   });
-  socket.on("createMessage", (message,userName) => {
+  socket.on("createMessage", (message) => {
     $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
     scrollToBottom()
   })
@@ -46,8 +53,8 @@ socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
 })
 
-myPeer.on('open', userId => {
-  socket.emit('join-room', ROOM_ID, userId,user)
+myPeer.on('open', id => {
+  socket.emit('join-room', ROOM_ID, id)
 })
 
 function connectToNewUser(userId, stream) {
@@ -102,10 +109,17 @@ const playStop = () => {
   }
 }
 
+document.querySelector('.main__mute_button').addEventListener("click", function () {
+  document.querySelector('.main__mute_button').classList.toggle("color");
+});
+
+document.querySelector('.main__video_button').addEventListener("click", function () {
+  document.querySelector('.main__video_button').classList.toggle("color");
+});
+
 const setMuteButton = () => {
   const html = `
     <i class="fas fa-microphone"></i>
-    <span>Mute</span>
   `
   document.querySelector('.main__mute_button').innerHTML = html;
 }
@@ -113,7 +127,6 @@ const setMuteButton = () => {
 const setUnmuteButton = () => {
   const html = `
     <i class="unmute fas fa-microphone-slash"></i>
-    <span>Unmute</span>
   `
   document.querySelector('.main__mute_button').innerHTML = html;
 }
@@ -121,7 +134,6 @@ const setUnmuteButton = () => {
 const setStopVideo = () => {
   const html = `
     <i class="fas fa-video"></i>
-    <span>Stop Video</span>
   `
   document.querySelector('.main__video_button').innerHTML = html;
 }
@@ -129,11 +141,10 @@ const setStopVideo = () => {
 const setPlayVideo = () => {
   const html = `
   <i class="stop fas fa-video-slash"></i>
-    <span>Play Video</span>
   `
   document.querySelector('.main__video_button').innerHTML = html;
 }
-const inviteButton= document.querySelector("#invitebtn");
+const inviteButton = document.querySelector("#invitebtn");
 inviteButton.addEventListener("click", function (e) {
   prompt(
     "Copy this link and send it to people you want to meet with",
@@ -146,3 +157,5 @@ const stopButton = document.querySelector("#stopButton").addEventListener("click
     window.close();
   }
 });
+
+
