@@ -7,7 +7,7 @@ showChat.addEventListener("click", function () {
   document.querySelector(".main__left").classList.toggle("fullDisplay");
   showChat.classList.toggle("color");
 });
-const user = prompt("Enter your name");
+//const user = prompt("Enter your name");
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", (message) => {
-    $("ul").append(`<li class="message"><b>${user}</b><br/>${message}</li>`);
+    $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
     scrollToBottom()
   })
 })
