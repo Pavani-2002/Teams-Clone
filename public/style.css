@@ -290,7 +290,8 @@ video {
     width: 280px;
     border-radius: 50%;
     /* border: 5px solid rgb(0, 10, 0); */
-    
+    object-fit: cover;
+    padding: 8px;
     object-fit: cover;
     transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
