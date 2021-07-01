@@ -13,9 +13,9 @@ const peers = {}
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
-}).then(stream => {
-  myVideoStream = stream;
-  addVideoStream(myVideo, stream)
+}).then(AudioVideo => {
+  myVideoStream = AudioVideo;
+  addVideoStream(myVideo, AudioVideo)
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
@@ -25,7 +25,7 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    connectToNewUser(userId, stream)
+    connectToNewUser(userId, AudioVideo)
   })
   // input value
   let text = $("input");
@@ -36,7 +36,7 @@ navigator.mediaDevices.getUserMedia({
       text.val('')
     }
   });
-  socket.on("createMessage", message => {
+  socket.on("createMessage", (message,userName) => {
     $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
     scrollToBottom()
   })
@@ -46,8 +46,8 @@ socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
 })
 
-myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id)
+myPeer.on('open', userId => {
+  socket.emit('join-room', ROOM_ID, userId,user)
 })
 
 function connectToNewUser(userId, stream) {
@@ -139,4 +139,10 @@ inviteButton.addEventListener("click", function (e) {
     "Copy this link and send it to people you want to meet with",
     window.location.href
   );
+});
+const stopButton = document.querySelector("#stopButton").addEventListener("click", function () {
+  var ans = confirm("Are you sure you want to quit?");
+  if (ans === true) {
+    window.close();
+  }
 });

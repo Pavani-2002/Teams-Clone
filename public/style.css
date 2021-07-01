@@ -94,8 +94,19 @@
     color: #F5F5F5;
 }
 
-.leave_meeting {
-    color: #EB534B;
+#stopButton{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.end_call{
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  border-radius: 50%;
+  padding: 9px;
+  margin: 0 3px 0 3px;
+  cursor: pointer;
 }
 
 .unmute, .stop {
