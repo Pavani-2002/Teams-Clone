@@ -82,14 +82,6 @@ function addVideoStream(video, stream) {
     document.getElementsByTagName("video").style.height = "200px";
     document.getElementsByTagName("video").style.width = "200px";
   }
-  if (totalUsers > 1) {
-    for (let index = 0; index < totalUsers; index++) {
-      document.getElementsByTagName("video")[index].style.width =
-        100 / totalUsers + "%";
-      document.getElementsByTagName("video")[index].style.height =
-      100 / totalUsers + "%";
-    }
-  }
 }
 
 
