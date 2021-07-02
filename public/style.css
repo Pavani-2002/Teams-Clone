@@ -188,24 +188,6 @@ body{
   flex-wrap: wrap;
 }
 
-/* video {
-    height: 300px;
-    width: 400px;
-    object-fit: cover;
-    padding: 8px;
-}
-
- video {
-    height: 300px;
-    border-radius: 50%;
-  
-    width: 300px;
-    object-fit: cover;
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-} */
-
 .options_button{
     display: flex;
     justify-content: center;
@@ -255,6 +237,7 @@ body{
     height: 67vh;
     flex-grow: 1;
     overflow-y: scroll;
+    overflow-x: wrap;
 }
 
 .messages{
@@ -326,20 +309,20 @@ display:none;
 }
   
   
-  @keyframes null__display {
+@keyframes null__display {
     0% {
-      right: -100px;
+        right: -100px;
     }
     100% {
-      right: 0px;
+        right: 0px;
     }
-  }
-  
-  .fullDisplay{
+}
+
+.fullDisplay{
     height: 80vh;
     background-color: #233f58;
-  }
+}
 
-  .main_area{
-      display: flex;
-  }
+.main_area{
+    display: flex;
+}

@@ -7,7 +7,7 @@ showChat.addEventListener("click", function () {
   document.querySelector(".main__left").classList.toggle("fullDisplay");
   showChat.classList.toggle("color");
 });
-//const user = prompt("Enter your name");
+const user = prompt("Enter your name");
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", (message) => {
-    $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
+    $("ul").append(`<li class="message"><b><span>${userName===user?"Me":userName}</span></b><br/>${message}</li>`);
     scrollToBottom()
   })
 })
@@ -76,6 +76,18 @@ function addVideoStream(video, stream) {
     video.play()
   })
   videoGrid.append(video)
+  let totalUsers = document.getElementsByTagName("video").length;
+  if(totalUsers > 12)
+  {
+    document.getElementsByTagName("video").style.height = "200px";
+    document.getElementsByTagName("video").style.width = "200px";
+  }
+  if (totalUsers > 1) {
+    for (let index = 0; index < totalUsers; index++) {
+      document.getElementsByTagName("video")[index].style.width =
+        100 / totalUsers + "%";
+    }
+  }
 }
 
 
@@ -157,5 +169,3 @@ const stopButton = document.querySelector("#stopButton").addEventListener("click
     window.close();
   }
 });
-
-
