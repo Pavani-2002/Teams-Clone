@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", (message) => {
-    $("ul").append(`<li class="message"><b><span>${userName===user?"Me":userName}</span></b><br/>${message}</li>`);
+    $("ul").append(`<li class="message"><b><span>user</b><br/>${message}</li>`);
     scrollToBottom()
   })
 })
@@ -86,6 +86,8 @@ function addVideoStream(video, stream) {
     for (let index = 0; index < totalUsers; index++) {
       document.getElementsByTagName("video")[index].style.width =
         100 / totalUsers + "%";
+      document.getElementsByTagName("video")[index].style.height =
+      100 / totalUsers + "%";
     }
   }
 }
