@@ -269,8 +269,8 @@ body{
 }
   
 video {
-    height: 280px;
-    width: 280px;
+    height: 300px;
+    width: 300px;
     border-radius: 50%;
     /* border: 5px solid rgb(0, 10, 0); */
     object-fit: cover;
@@ -284,11 +284,11 @@ video {
   
 
 .main__right {
-height:80vh;
-width:20vw;
-background-color: #ffffff;
+    height:80vh;
+    width:20vw;
+    background-color: #ffffff;
     border-radius:10px;
-display:none;
+    display:none;
 }
 
 .right{
@@ -307,16 +307,6 @@ display:none;
     animation-fill-mode: forwards;
     animation-duration: 500ms;
 }
-  
-  
-@keyframes null__display {
-    0% {
-        right: -100px;
-    }
-    100% {
-        right: 0px;
-    }
-}
 
 .fullDisplay{
     height: 80vh;
@@ -325,4 +315,14 @@ display:none;
 
 .main_area{
     display: flex;
+    transition: all 1s ease-in-out;
+}
+  
+@keyframes null__display {
+    0% {
+        right: -100px;
+    }
+    100% {
+        right: 0px;
+    }
 }

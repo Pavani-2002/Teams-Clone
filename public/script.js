@@ -77,7 +77,7 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
   let totalUsers = document.getElementsByTagName("video").length;
-  if(totalUsers > 12)
+  if(totalUsers > 8)
   {
     document.getElementsByTagName("video").style.height = "200px";
     document.getElementsByTagName("video").style.width = "200px";
