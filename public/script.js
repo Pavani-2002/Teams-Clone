@@ -44,8 +44,8 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", (message,userName) => {
-    $("ul").append(`<li class="message"><b><span>${userName===user?"me":user}</span></b><br/><span>${message}</span></li>`);
-    scrollToBottom()
+    $(".messages").innerHTML=`<div class="message"><b><i class="far fa-user-circle"></i> <span> ${userName === user ? "me" : userName}</span> </b><span>${message}</span></div>`;
+    scrollToBottom ();
   })
 })
 
@@ -54,7 +54,7 @@ socket.on('user-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id,userName)
+  socket.emit('join-room', ROOM_ID, id,user)
 })
 
 function connectToNewUser(userId, stream) {

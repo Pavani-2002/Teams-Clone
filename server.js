@@ -25,7 +25,7 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId,userName) => {
+  socket.on('join-room', (roomId, userId,user) => {
     socket.join(roomId)
     // map.set(userId, userName );
     socket.to(roomId).broadcast.emit('user-connected', userId);

@@ -155,6 +155,14 @@ body{
     margin: 0 3px 0 3px;
     cursor: pointer;
 }
+.send
+{
+  height:40px;
+  width:40px;
+  background-color: white;
+  cursor:pointer;
+
+}
 .main__controls{
     display: flex;
 }
@@ -178,7 +186,7 @@ body{
     align-items: center;
     justify-content: center;
   }
-  
+
 #video-grid{
     display: flex;
   height:100%;
@@ -213,7 +221,7 @@ body{
     font-size: 1.2rem;
     width: 50px;
   }
-  
+
 
 .color
 {
@@ -267,7 +275,7 @@ body{
     /* border: 2px solid black; */
     background-color: rgba(207, 207, 207, 0.747);
 }
-  
+
 video {
     height: 300px;
     width: 300px;
@@ -280,8 +288,8 @@ video {
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
 }
-  
-  
+
+
 
 .main__right {
     height:80vh;
@@ -317,7 +325,7 @@ video {
     display: flex;
     transition: all 1s ease-in-out;
 }
-  
+
 @keyframes null__display {
     0% {
         right: -100px;
@@ -325,4 +333,27 @@ video {
     100% {
         right: 0px;
     }
+}
+.message {
+  display: flex;
+  flex-direction: column;
+}
+
+.message > b {
+  color: #eeeeee;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.message > b > i {
+  margin-right: 0.7rem;
+  font-size: 1.5rem;
+}
+
+.message > span {
+  background-color: #eeeeee;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 5px;
 }
