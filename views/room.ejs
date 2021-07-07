@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <script>
-      const ROOM_ID = "<%= roomId %>"
+      const RoomId = "<%= roomId %>"
    </script>
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,12 +48,15 @@
             <h4>Chat</h4>
          </div>
          <div class="main__chat_window">
-            <ul class="messages">
+            <!-- <ul class="messages">
 
-            </ul>
+            </ul> -->
+            <div class="messages">
+
+            </div>
          </div>
          <div class="main__message_container">
-            <input id="chat_message" type="text" placeholder="Type message here...">
+            <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
               <div id="send" class="options__button">
                 <img src="/images/right-arrow.jpg" class=" send" />
              </div>
@@ -85,3 +88,19 @@
 </body>
 
 </html>
+
+
+
+
+<!-- <div class="messages" id="messagebox">
+        <div class="main__right hide">
+            <div class="main__chat_window">
+                <div class="messages_area" >
+
+                </div>
+            </div>
+            <div class="main__message_container">
+              <input id="chat_message" type="text" autocomplete="off" placeholder="send a message!">
+              <div id="send" class="options__button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </div -->

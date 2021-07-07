@@ -2,7 +2,7 @@ const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 
 const showChat = document.querySelector("#showChat");
-showChat.addEventListener("click", function () {
+showChat.addEventListener("click", function() {
   document.querySelector(".main__right").classList.toggle("right");
   document.querySelector(".main__left").classList.toggle("fullDisplay");
   showChat.classList.toggle("color");
@@ -35,18 +35,23 @@ navigator.mediaDevices.getUserMedia({
     connectToNewUser(userId, stream)
   })
   // input value
-  let text = $("input");
-  // when press enter send message
-  $('html').keydown(function (e) {
-    if (e.which == 13 && text.val().length !== 0) {
-      socket.emit('message', text.val());
-      text.val('')
-    }
-  });
-  socket.on("createMessage", (message,userName) => {
-    $(".messages").innerHTML=`<div class="message"><b><i class="far fa-user-circle"></i> <span> ${userName === user ? "me" : userName}</span> </b><span>${message}</span></div>`;
-    scrollToBottom ();
-  })
+  // let text = $("input");
+  // // when press enter send message
+  // $('html').keydown(function (e) {
+  //   if (e.which == 13 && text.val().length !== 0) {
+  //     socket.emit('message', text.val());
+  //     text.val('')
+  //   }
+  // });
+  // socket.on("createMessage", (message,userName) => {
+  //   $(".messages").innerHTML =messages.innerHTML +
+  //   `<div class="message">
+  //       <b><i class="far fa-user-circle"></i> <span> ${
+  //         userName === user ? "me" : userName
+  //       }</span> </b>
+  //       <span>${message}</span>
+  //   </div>`;
+  // })
 })
 
 socket.on('user-disconnected', userId => {
@@ -54,7 +59,7 @@ socket.on('user-disconnected', userId => {
 })
 
 myPeer.on('open', id => {
-  socket.emit('join-room', ROOM_ID, id,user)
+  socket.emit('join-room', RoomId, id, user)
 })
 
 function connectToNewUser(userId, stream) {
@@ -77,8 +82,7 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
   let totalUsers = document.getElementsByTagName("video").length;
-  if(totalUsers > 8)
-  {
+  if (totalUsers > 8) {
     document.getElementsByTagName("video").style.height = "200px";
     document.getElementsByTagName("video").style.width = "200px";
   }
@@ -115,11 +119,11 @@ const playStop = () => {
   }
 }
 
-document.querySelector('.main__mute_button').addEventListener("click", function () {
+document.querySelector('.main__mute_button').addEventListener("click", function() {
   document.querySelector('.main__mute_button').classList.toggle("color");
 });
 
-document.querySelector('.main__video_button').addEventListener("click", function () {
+document.querySelector('.main__video_button').addEventListener("click", function() {
   document.querySelector('.main__video_button').classList.toggle("color");
 });
 
@@ -151,15 +155,49 @@ const setPlayVideo = () => {
   document.querySelector('.main__video_button').innerHTML = html;
 }
 const inviteButton = document.querySelector("#invitebtn");
-inviteButton.addEventListener("click", function (e) {
+inviteButton.addEventListener("click", function(e) {
   prompt(
     "Copy this link and send it to people you want to meet with",
     window.location.href
   );
 });
-const stopButton = document.querySelector("#stopButton").addEventListener("click", function () {
+const stopButton = document.querySelector("#stopButton").addEventListener("click", function() {
   var ans = confirm("Are you sure you want to quit?");
   if (ans === true) {
     window.close();
   }
 });
+
+const text = document.querySelector("#chat_message");
+const send = document.querySelector("#send");
+const messages_m = document.querySelector(".messages");
+send.addEventListener("click", () => {
+  if (text.value.length !== 0) {
+    socket.emit("message", text.value);
+    messages_m.innerHTML = messages_m.innerHTML +
+      `<div class="message_card">
+             <p class="bold">Me:</p>
+             <p class="textmsg">${text.value}</p></div>`;
+    text.value = "";
+  }
+})
+text.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && text.value.length !== 0) {
+    socket.emit('message', RoomId, text.value, user);
+    messages_m.innerHTML = messages_m.innerHTML + `<div class="message_card">
+  <p class="bold">Me:</p>
+<p class="textmsg">${text.value}</p>
+         </div>`;
+    text.value = "";
+  }
+});
+
+socket.on("createMessage", (message, username) => {
+  messages_m.innerHTML =
+    messages_m.innerHTML +
+    `<div class="message_card">
+             <p class="bold"> ${username}:</p>
+             <p class="textmsg">${message}</p>
+         </div>`;
+
+})

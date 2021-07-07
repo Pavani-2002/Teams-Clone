@@ -25,19 +25,15 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId,user) => {
-    socket.join(roomId)
-    // map.set(userId, userName );
-    socket.to(roomId).broadcast.emit('user-connected', userId);
-    // messages
-    // let Name = map.get(userId);
-    socket.on('message', (message ) => {
-      //send message to the same room
-      io.to(roomId).emit('createMessage', message,userName)
+  socket.on('join-room', (RoomId, userId,username) => {
+    socket.join(RoomId)
+    socket.to(RoomId).broadcast.emit('user-connected', userId);
+    socket.on('message', (RoomId,message,username) => {
+      socket.broadcast.to(RoomId).emit("createMessage", message, username);
     });
 
     socket.on('disconnect', () => {
-      socket.to(roomId).broadcast.emit('user-disconnected', userId)
+      socket.to(RoomId).broadcast.emit('user-disconnected', userId)
     })
   })
 })
