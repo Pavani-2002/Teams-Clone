@@ -249,7 +249,6 @@ body{
 }
 
 .messages{
-    list-style: none;
     padding-left:5px;
 }
 
@@ -279,7 +278,7 @@ body{
 video {
     height: 300px;
     width: 300px;
-    border-radius: 50%;
+    border-radius: 50px;
     /* border: 5px solid rgb(0, 10, 0); */
     object-fit: cover;
     padding: 8px;
@@ -347,6 +346,11 @@ video {
 }
 .bold{
     /* font-weight: bolder; */
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.txtmsg{
     font-size: 20px;
     font-family: 'Open Sans', sans-serif !important;
 }

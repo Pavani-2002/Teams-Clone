@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+*:focus,
+*:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    height:100vh;
+    width:100vw;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(315deg, #ffffff, #d7e1ec);
+}
+
+img{
+    height: 400px;
+    width:600px;
+}
+
+.main{
+    height: 77vh;
+    display: flex;
+    width: 100%;
+}
+
+.main-buttons{
+    display:flex;
+    align-items: center;
+    width: 60%;
+}
+
+.main-images{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    margin-left: 50px;
+}
+
+span{
+    position: relative;
+    display: inline-flex;
+    width: 180px;
+    height: 55px;
+    margin: 0 15px;
+    perspective: 1000px;
+  }
+  span a{
+    font-size: 19px;
+    letter-spacing: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform .25s;
+    font-family: 'Montserrat', sans-serif;
+
+  }
+  span a:before,
+  span a:after{
+    position: absolute;
+    content: "Start Meeting";
+    height: 55px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  span a:before{
+    color: #fff;
+    background: #000;
+    transform: rotateY(0deg) translateZ(25px);
+  }
+  span a:after{
+    color: #000;
+    transform: rotateX(90deg) translateZ(25px);
+  }
+  span a:hover{
+    transform: translateZ(-25px) rotateX(-90deg);
+  }
+
+.footer{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.icons{
+    display: flex;
+    margin: 15px;
+}
+.trendy-icons{
+    font-size: 20px;
+    margin-left: 20px;
+    border: white 10px solid;
+    border-radius: 50%;
+    background-color: white;
+}

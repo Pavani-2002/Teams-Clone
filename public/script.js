@@ -15,6 +15,8 @@ const myPeer = new Peer(undefined, {
 })
 let myVideoStream;
 const myVideo = document.createElement('video')
+const myscreen = document.createElement('video')
+myscreen.setAttribute("id", "screenshare");
 myVideo.muted = true;
 const peers = {}
 navigator.mediaDevices.getUserMedia({
@@ -34,24 +36,6 @@ navigator.mediaDevices.getUserMedia({
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
   })
-  // input value
-  // let text = $("input");
-  // // when press enter send message
-  // $('html').keydown(function (e) {
-  //   if (e.which == 13 && text.val().length !== 0) {
-  //     socket.emit('message', text.val());
-  //     text.val('')
-  //   }
-  // });
-  // socket.on("createMessage", (message,userName) => {
-  //   $(".messages").innerHTML =messages.innerHTML +
-  //   `<div class="message">
-  //       <b><i class="far fa-user-circle"></i> <span> ${
-  //         userName === user ? "me" : userName
-  //       }</span> </b>
-  //       <span>${message}</span>
-  //   </div>`;
-  // })
 })
 
 socket.on('user-disconnected', userId => {
@@ -200,4 +184,34 @@ socket.on("createMessage", (message, username) => {
              <p class="textmsg">${message}</p>
          </div>`;
 
+})
+
+let ss = document.querySelector("#screensharebtn");
+let toggle = false;
+ss.addEventListener("click", () => {
+  if (toggle) {
+    toggle = !toggle
+    navigator.mediaDevices.getDisplayMedia({
+      video: {
+        cursor: "always"
+      }
+    }).then(stream => {
+      myVideoStream = stream;
+      addVideoStream(myscreen, stream)
+      myPeer.on('call', call => {
+        call.answer(stream)
+        const video = document.createElement('video')
+        call.on('stream', userVideoStream => {
+          addVideoStream(video, userVideoStream)
+        })
+      })
+      socket.on('user-connected', userId => {
+        connectToNewUser(userId, stream)
+      })
+    })
+  } else {
+    toggle=!toggle
+     let p=document.querySelector("#screenshare")
+     p.parentNode.removeChild(p);
+  }
 })
