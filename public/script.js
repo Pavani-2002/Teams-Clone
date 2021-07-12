@@ -213,5 +213,6 @@ ss.addEventListener("click", () => {
     toggle=!toggle
      let p=document.querySelector("#screenshare")
      p.parentNode.removeChild(p);
+
   }
 })
