@@ -3,8 +3,8 @@ const videoGrid = document.getElementById('video-grid')
 
 const showChat = document.querySelector("#showChat");
 showChat.addEventListener("click", function() {
-  document.querySelector(".main__right").classList.toggle("right");
-  document.querySelector(".main__left").classList.toggle("fullDisplay");
+  document.querySelector(".main-right").classList.toggle("right");
+  document.querySelector(".main-left").classList.toggle("fullDisplay");
   showChat.classList.toggle("color");
 });
 const user = prompt("Enter your name");
