@@ -161,7 +161,7 @@ send.addEventListener("click", () => {
     messages_m.innerHTML = messages_m.innerHTML +
       `<div class="message_card">
              <p class="bold">Me:</p>
-             <p class="textmsg">${text.value}</p></div>`;
+             <p class="textmsg bold">${text.value}</p></div>`;
     text.value = "";
   }
 })
@@ -170,7 +170,7 @@ text.addEventListener("keydown", (e) => {
     socket.emit('message', RoomId, text.value, user);
     messages_m.innerHTML = messages_m.innerHTML + `<div class="message_card">
   <p class="bold">Me:</p>
-<p class="textmsg">${text.value}</p>
+<p class="textmsg bold">${text.value}</p>
          </div>`;
     text.value = "";
   }
@@ -181,7 +181,7 @@ socket.on("createMessage", (message, username) => {
     messages_m.innerHTML +
     `<div class="message_card">
              <p class="bold"> ${username}:</p>
-             <p class="textmsg">${message}</p>
+             <p class="textmsg bold">${message}</p>
          </div>`;
 
 })
